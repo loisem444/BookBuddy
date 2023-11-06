@@ -4,21 +4,20 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { RootStackParamList } from '../../App'
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'MyBooks'>;
 
-const HomeScreen: React.FC<Props> = ({
+const MyBooksScreen: React.FC<Props> = ({
     navigation
 }) => {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <Text>Home screen</Text>
-            <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
+            <Text>My books screen</Text>
             </View>
     );
 }
 
-export default HomeScreen
+export default MyBooksScreen
 
 const styles = StyleSheet.create({
     container: {

@@ -1,27 +1,25 @@
-
 import * as React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { RootStackParamList } from '../../App'
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const HomeScreen: React.FC<Props> = ({
+const LoginScreen: React.FC<Props> = ({
     navigation
 }) => {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <Text>Home screen</Text>
-            <Button title="Go to View Book" onPress={() => navigation.navigate('ViewBook')} />
-            <Button title="Go to New Book" onPress={() => navigation.navigate('NewBook')} />
-            <Button title="Go to My Books" onPress={() => navigation.navigate('MyBooks')} />
+            <Text>Login screen</Text>
+            <Button title="Go to Home" onPress={() => navigation.replace('Home')} />
+            <Button title="Go to Create account" onPress={() => navigation.navigate('CreateAccount')} />
             </View>
     );
 }
 
-export default HomeScreen
+export default LoginScreen
 
 const styles = StyleSheet.create({
     container: {
