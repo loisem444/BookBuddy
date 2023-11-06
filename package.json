@@ -19,11 +19,7 @@
     "react-native-screens": "~3.22.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "eslint": "^8.53.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.33.2",
-    "prettier": "3.0.3"
+    "@babel/core": "^7.20.0"
   },
   "private": true
 }
