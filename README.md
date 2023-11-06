@@ -1,2 +1,2 @@
 # BookBuddy
-A student 
+An app for students to find second hand books sold by other students
