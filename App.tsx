@@ -10,13 +10,15 @@ import MyBooksScreen from './src/components/MyBooksScreen';
 import NewBookScreen from './src/components/NewBookScreen';
 import ViewBookScreen from './src/components/ViewBookScreen';
 
+import { Book } from './src/types';
+
 export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
   CreateAccount: undefined;
   MyBooks: undefined;
   NewBook: undefined;
-  ViewBook: undefined;
+  ViewBook: { book: Book };
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
