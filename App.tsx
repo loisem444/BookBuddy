@@ -9,6 +9,9 @@ import CreateAccountScreen from './src/components/CreateAccountScreen';
 import MyBooksScreen from './src/components/MyBooksScreen';
 import NewBookScreen from './src/components/NewBookScreen';
 import ViewBookScreen from './src/components/ViewBookScreen';
+import MenuScreen from './src/components/MenuScreen';
+
+import { MenuIconButton } from './src/components/MenuIconButton';
 
 import { Book } from './src/types';
 
@@ -19,6 +22,7 @@ export type RootStackParamList = {
   MyBooks: undefined;
   NewBook: undefined;
   ViewBook: { book: Book };
+  Menu: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -28,7 +32,11 @@ function App() {
     <NavigationContainer>
       <RootStack.Navigator initialRouteName="Login">
         <RootStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <RootStack.Screen name="Home" component={HomeScreen} options={{ title: 'Books' }} />
+        <RootStack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Books', headerLeft: () => <MenuIconButton /> }}
+        />
         <RootStack.Screen
           name="CreateAccount"
           component={CreateAccountScreen}
@@ -49,6 +57,7 @@ function App() {
           component={ViewBookScreen}
           options={{ title: 'View Books' }}
         />
+        <RootStack.Screen name="Menu" component={MenuScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
