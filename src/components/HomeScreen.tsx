@@ -1,44 +1,31 @@
 import * as React from 'react';
 import {
   StyleSheet,
-  Text,
   SafeAreaView,
   FlatList,
-  TouchableOpacity,
-  Image,
   View,
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
 import { RootStackParamList } from '../../App';
+
+import { BookListItem } from './BookListItem';
+
 import { books } from '../mockBooks';
 import { Book } from '../types';
 import colors from '../colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-type ItemProps = {
-  item: Book;
-  onPress: () => void;
-};
-
-const Item = ({ item, onPress }: ItemProps) => (
-  <TouchableOpacity onPress={onPress}>
-    <View style={styles.itemContainer}>
-      <Image source={{ uri: item.coverImage }} style={styles.bookCoverImage} />
-      <Text style={styles.itemText}>{item.name}</Text>
-    </View>
-  </TouchableOpacity>
-);
-
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const onPressItem = (item: Book) => {
+      // TODO: Navigate to ViewListedBook
     navigation.navigate('ViewBook', { book: item });
   };
 
   const renderItem = ({ item }: { item: Book }) => {
-    return <Item item={item} onPress={() => onPressItem(item)} />;
+    return <BookListItem item={item} onPress={() => onPressItem(item)} />;
   };
 
   return (
