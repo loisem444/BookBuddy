@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View } from 'react-native';
 
 import { Book } from '../types';
 import colors from '../colors';

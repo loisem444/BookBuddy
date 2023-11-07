@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  FlatList,
-  View,
-} from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
@@ -20,7 +15,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MyBooks'>;
 
 const MyBooksScreen: React.FC<Props> = ({ navigation }) => {
   const onPressItem = (item: Book) => {
-      // TODO: Navigate to ViewMyBook
+    // TODO: Navigate to ViewMyBook
     navigation.navigate('ViewBook', { book: item });
   };
 
