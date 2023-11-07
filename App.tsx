@@ -35,7 +35,7 @@ function App() {
         <RootStack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Books', headerLeft: () => <MenuIconButton /> }}
+          options={{ title: 'Listed Books', headerLeft: () => <MenuIconButton /> }}
         />
         <RootStack.Screen
           name="CreateAccount"
