@@ -55,8 +55,13 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
 
   // Function to handle edit action
   const handleEdit = () => {
-    navigation.replace('EditBook');
-
+    // navigation.replace('EditBook');
+    navigation.navigate('EditBook', {
+      bookName: book.name,
+      ISBN: book.ISBN,
+      contactEmail: book.contactEmail,
+      price: book.price,
+    } as any);
   };
 
   return (

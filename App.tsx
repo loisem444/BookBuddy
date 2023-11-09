@@ -11,6 +11,7 @@ import NewBookScreen from './src/components/NewBookScreen';
 import NewBookConfirmation from './src/components/NewBookConfirmation';
 import ViewBookScreen from './src/components/ViewBookScreen';
 import EditBookScreen from './src/components/EditBookScreen';
+import EditBookConfirmation from './src/components/EditBookConfirmation';
 import MenuScreen from './src/components/MenuScreen';
 
 import { MenuIconButton } from './src/components/MenuIconButton';
@@ -25,6 +26,7 @@ export type RootStackParamList = {
   NewBook: undefined;
   NewBookConfirmation: undefined;
   EditBook: undefined;
+  EditBookConfirmation: undefined;
   ViewBook: { book: Book , previousScreen : String };
   Menu: undefined;
 };
@@ -66,10 +68,15 @@ function App() {
           component={ViewBookScreen}
           options={{ title: 'View Books' }}
         />
-         <RootStack.Screen
+        <RootStack.Screen
           name="EditBook"
           component={EditBookScreen}
           options={{ title: 'Edit Book Details Screen'}}
+        />
+        <RootStack.Screen
+          name="EditBookConfirmation"
+          component={EditBookConfirmation}
+          options={{ title: 'Edit BookConfirmation'}}
         />
         <RootStack.Screen name="Menu" component={MenuScreen} />
       </RootStack.Navigator>
