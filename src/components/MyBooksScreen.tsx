@@ -16,7 +16,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MyBooks'>;
 const MyBooksScreen: React.FC<Props> = ({ navigation }) => {
   const onPressItem = (item: Book) => {
     // TODO: Navigate to ViewMyBook
-    navigation.navigate('ViewBook', { book: item });
+    navigation.navigate('ViewBook', { book: item, previousScreen: 'MyBookScreen' });
   };
 
   const renderItem = ({ item }: { item: Book }) => {

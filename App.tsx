@@ -9,6 +9,7 @@ import CreateAccountScreen from './src/components/CreateAccountScreen';
 import MyBooksScreen from './src/components/MyBooksScreen';
 import NewBookScreen from './src/components/NewBookScreen';
 import ViewBookScreen from './src/components/ViewBookScreen';
+import EditBookScreen from './src/components/EditBookScreen';
 import MenuScreen from './src/components/MenuScreen';
 
 import { MenuIconButton } from './src/components/MenuIconButton';
@@ -21,7 +22,8 @@ export type RootStackParamList = {
   CreateAccount: undefined;
   MyBooks: undefined;
   NewBook: undefined;
-  ViewBook: { book: Book };
+  EditBook: undefined;
+  ViewBook: { book: Book , previousScreen : String };
   Menu: undefined;
 };
 
@@ -56,6 +58,11 @@ function App() {
           name="ViewBook"
           component={ViewBookScreen}
           options={{ title: 'View Books' }}
+        />
+         <RootStack.Screen
+          name="EditBook"
+          component={EditBookScreen}
+          options={{ title: 'Edit Book Details Screen'}}
         />
         <RootStack.Screen name="Menu" component={MenuScreen} />
       </RootStack.Navigator>
