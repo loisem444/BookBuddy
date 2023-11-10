@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   separator: {
-    height: 2,
-    backgroundColor: colors.black,
+    height: 16,
   },
 });
