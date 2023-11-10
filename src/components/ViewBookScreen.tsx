@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
-import { myBooks } from '../mockBooks';
+import colors from '../colors';
+import Icon from 'react-native-vector-icons/FontAwesome'; 
 
 interface Book {
   id: string;
@@ -30,7 +31,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'ViewBook'>;
 
 const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
   const { book, previousScreen } = route.params;
-  const [books, setBooks] = useState<Book[]>(myBooks);
 
   // Check if the previous screen is 'MyBookScreen'
   const isFromMyBooksScreen = previousScreen === 'MyBookScreen';
@@ -49,8 +49,6 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
         {
           text: 'Yes',
           onPress: () => {
-            const updatedBooks = books.filter((book) => book.id !== id);
-            setBooks(updatedBooks);
             navigation.replace('MyBooks');
           },
         },
@@ -74,20 +72,27 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={book.coverImage} resizeMode="cover" />
-        <Text style={styles.title}>{book.name}</Text>
       </View>
       <View style={styles.detailsContainer}>
+      <Text style={styles.title}>{book.name}</Text>
+      <Text style={styles.author}>By {book.authors}</Text>
+        <View style={styles.separator} />
+        <Text style={styles.description}>Description: </Text>
+        <Text style={styles.description}>{book.shortDescription}</Text>
+        <View style={styles.separator} />
         <Text style={styles.author}>ISBN: {book.ISBN}</Text>
         <View style={styles.separator} />
         <Text style={styles.author}>Edition: {book.Edition}</Text>
         <View style={styles.separator} />
-        <Text style={styles.author}>Authors: {book.authors}</Text>
+
+        <Text style={styles.priceText}>Price : ${book.price}</Text>
         <View style={styles.separator} />
-        <Text style={styles.author}>price: {book.price}</Text>
-        <View style={styles.separator} />
-        <Text style={styles.author}>contactEmail: {book.contactEmail}</Text>
-        <View style={styles.separator} />
-        <Text style={styles.description}>Description: {book.shortDescription}</Text>
+
+      <TouchableOpacity style={styles.button}>
+      <Icon name="envelope" size={20} color="#FFFFFF" style={styles.icon} />
+      <Text style={styles.emailText}>{book.contactEmail}</Text>
+    </TouchableOpacity>
+        
       </View>
 
       {isFromMyBooksScreen && (
@@ -110,25 +115,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#fff',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   imageContainer: {
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: 10,
     backgroundColor: 'rgba(173, 216, 230, 0.5)',
     borderRadius: 15,
   },
   image: {
     width: 100,
     height: 150,
-    borderRadius: 10,
   },
   detailsContainer: {
-    // flex: 2,
     padding: 20,
     backgroundColor: 'rgba(173, 216, 230, 0.5)',
     borderRadius: 15,
@@ -138,19 +140,24 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    marginTop: 10,
   },
   author: {
     fontSize: 16,
-    marginBottom: 10,
   },
   description: {
     fontSize: 14,
   },
+  priceText: {
+    color: colors.black,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 90
+  },
   separator: {
     height: 2,
     backgroundColor: 'rgba(0,0,0, 0.5)',
-    marginTop: 3,
+    marginBottom: 10,
+    marginTop:10,
   },
 
   buttonContainer: {
@@ -159,7 +166,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 5,
     marginBottom: 5,
-    padding: 20,
+    padding: 10,
     backgroundColor: 'rgba(173, 216, 230, 0.5)',
     borderRadius: 15,
   },
@@ -180,5 +187,21 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
+  },
+//email buttoon
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#3498db', // Button background color
+    padding: 10,
+    borderRadius: 5,
+  },
+  icon: {
+    marginRight: 20,
+  },
+  emailText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
 });
