@@ -78,7 +78,7 @@ export const books: Book[] = [
     name: 'A Mind For Numbers: How to Excel at Math and Science (Even If You Flunked Algebra) ',
     shortDescription:
       'Whether you are a student struggling to fulfill a math or science requirement, or you are embarking on a career change that requires a new skill set, A Mind for Numbers offers the tools you need to get a better grasp of that intimidating material.',
-      coverImage: require('../assets/mockbooks/mind-numbers.jpg'),
+    coverImage: require('../assets/mockbooks/mind-numbers.jpg'),
     authors: 'Oakley PhD, Barbara',
     ISBN: '9780399165245',
     Edition: 'Illustrated',
