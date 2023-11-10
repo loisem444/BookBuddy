@@ -27,7 +27,7 @@ export type RootStackParamList = {
   NewBookConfirmation: undefined;
   EditBook: undefined;
   EditBookConfirmation: undefined;
-  ViewBook: { book: Book , previousScreen : String };
+  ViewBook: { book: Book; previousScreen: String };
   Menu: undefined;
 };
 
@@ -71,12 +71,12 @@ function App() {
         <RootStack.Screen
           name="EditBook"
           component={EditBookScreen}
-          options={{ title: 'Edit Book Details Screen'}}
+          options={{ title: 'Edit Book Details Screen' }}
         />
         <RootStack.Screen
           name="EditBookConfirmation"
           component={EditBookConfirmation}
-          options={{ title: 'Edit BookConfirmation'}}
+          options={{ title: 'Edit BookConfirmation' }}
         />
         <RootStack.Screen name="Menu" component={MenuScreen} />
       </RootStack.Navigator>

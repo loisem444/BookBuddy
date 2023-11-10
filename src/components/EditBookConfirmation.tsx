@@ -1,39 +1,31 @@
-import React, { useEffect, useRef } from "react";
-import {
-  Dimensions,
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
-import Spacing from "../Spacing";
-import FontSize from "../FontSize";
-import Colors from "../colors";
-import Font from "../Font";
-import LottieView from "lottie-react-native";
+import React, { useEffect, useRef } from 'react';
+import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
+import Spacing from '../Spacing';
+import FontSize from '../FontSize';
+import Colors from '../colors';
+import Font from '../Font';
+import LottieView from 'lottie-react-native';
 
-const { height } = Dimensions.get("window");
+const { height } = Dimensions.get('window');
 
-type Props = NativeStackScreenProps<RootStackParamList, "EditBookConfirmation">;
+type Props = NativeStackScreenProps<RootStackParamList, 'EditBookConfirmation'>;
 
 const EditBookConfirmation: React.FC<Props> = ({ navigation: { navigate } }) => {
+  // const animationRef = useRef<LottieView>(null);
 
-    // const animationRef = useRef<LottieView>(null);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      navigate('Home');
+    }, 4000);
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-        navigate("Home"); 
-        }, 4000);
+    // Lottie
+    // animationRef.current?.play();
+    // animationRef.current?.play(30, 120);
 
-        // Lottie
-        // animationRef.current?.play();
-        // animationRef.current?.play(30, 120);
-
-        return () => clearTimeout(timeout);
-    }, [navigate]);
+    return () => clearTimeout(timeout);
+  }, [navigate]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.white }}>
@@ -43,7 +35,7 @@ const EditBookConfirmation: React.FC<Props> = ({ navigation: { navigate } }) => 
             height: height / 2.5,
           }}
           resizeMode="contain"
-          source={require("../../assets/editbook-confirm.png")}
+          source={require('../../assets/editbook-confirm.png')}
         />
         {/* <LottieView
             style={{
@@ -56,15 +48,13 @@ const EditBookConfirmation: React.FC<Props> = ({ navigation: { navigate } }) => 
           style={{
             paddingHorizontal: Spacing * 4,
             paddingTop: Spacing * 2,
-          }}
-        >
+          }}>
           <Text
             style={{
               fontSize: FontSize.xxLarge,
               color: Colors.primary,
-              textAlign: "center",
-            }}
-          >
+              textAlign: 'center',
+            }}>
             Successfully Modified Book!
           </Text>
 
@@ -72,10 +62,9 @@ const EditBookConfirmation: React.FC<Props> = ({ navigation: { navigate } }) => 
             style={{
               fontSize: FontSize.small,
               color: Colors.text,
-              textAlign: "center",
+              textAlign: 'center',
               marginTop: Spacing * 3,
-            }}
-          >
+            }}>
             Immerse yourself in the evolved literary exploration shaped by this modified edition
           </Text>
         </View>

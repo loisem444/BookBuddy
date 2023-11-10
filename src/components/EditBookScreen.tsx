@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import { RootStackParamList } from '../../App';
 import colors from '../colors';
-import Spacing from "../Spacing";
-import FontSize from "../FontSize";
-import AppTextInput from "./FormTextInput";
+import Spacing from '../Spacing';
+import FontSize from '../FontSize';
+import AppTextInput from './FormTextInput';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'EditBook'>;
 
@@ -26,41 +27,40 @@ const EditBookScreen: React.FC<Props> = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Edit Book</Text>
-          <Text style={styles.subHeaderText}>Remaster your book!</Text>
-        </View>
-        <View style={styles.formContainer}>
-          <AppTextInput
-            placeholder="Book Name"
-            value={updatedBookName}
-            onChangeText={(text) => setUpdatedBookName(text)}
-          />
-          <AppTextInput
-            placeholder="ISBN"
-            value={updatedISBN}
-            onChangeText={(text) => setUpdatedISBN(text)}
-          />
-          <AppTextInput
-            placeholder="Contact Email"
-            value={updatedContactEmail}
-            onChangeText={(text) => setUpdatedContactEmail(text)}
-          />
-          <AppTextInput
-            placeholder="Price"
-            value={updatedPrice}
-            onChangeText={(text) => setUpdatedPrice(text)}
-          />
-        </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Edit Book</Text>
+            <Text style={styles.subHeaderText}>Remaster your book!</Text>
+          </View>
+          <View style={styles.formContainer}>
+            <AppTextInput
+              placeholder="Book Name"
+              value={updatedBookName}
+              onChangeText={(text) => setUpdatedBookName(text)}
+            />
+            <AppTextInput
+              placeholder="ISBN"
+              value={updatedISBN}
+              onChangeText={(text) => setUpdatedISBN(text)}
+            />
+            <AppTextInput
+              placeholder="Contact Email"
+              value={updatedContactEmail}
+              onChangeText={(text) => setUpdatedContactEmail(text)}
+            />
+            <AppTextInput
+              placeholder="Price"
+              value={updatedPrice}
+              onChangeText={(text) => setUpdatedPrice(text)}
+            />
+          </View>
 
-        <TouchableOpacity
-          style={styles.modifyButton}
-          onPress={handleModifyBook}
-        >
-          <Text style={styles.buttonText}>Modify Book</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity style={styles.modifyButton} onPress={handleModifyBook}>
+            <Text style={styles.buttonText}>Modify Book</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     padding: Spacing * 2,
   },
   header: {
-    alignItems: "center",
+    alignItems: 'center',
     marginVertical: Spacing * 3,
   },
   headerText: {
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
   },
   subHeaderText: {
     fontSize: FontSize.large,
-    maxWidth: "60%",
-    textAlign: "center",
+    maxWidth: '60%',
+    textAlign: 'center',
     paddingTop: 0,
   },
   formContainer: {
@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     marginVertical: Spacing * 3,
     borderRadius: Spacing,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     color: colors.onPrimary,

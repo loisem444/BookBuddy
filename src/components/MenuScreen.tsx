@@ -1,19 +1,9 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
 import { RootStackParamList } from '../../App';
-import { books } from '../mockBooks';
-import { Book } from '../types';
 import colors from '../colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;

@@ -1,6 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button,Image, TouchableOpacity, ScrollView, Alert} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { myBooks } from '../mockBooks';
@@ -20,13 +29,11 @@ interface Book {
 type Props = NativeStackScreenProps<RootStackParamList, 'ViewBook'>;
 
 const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
-
-  const { book , previousScreen } = route.params;
+  const { book, previousScreen } = route.params;
   const [books, setBooks] = useState<Book[]>(myBooks);
 
   // Check if the previous screen is 'MyBookScreen'
   const isFromMyBooksScreen = previousScreen === 'MyBookScreen';
-  console.log(isFromMyBooksScreen);
 
   // Function to handle delete action
   const handleDelete = (id: string) => {
@@ -42,14 +49,13 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
         {
           text: 'Yes',
           onPress: () => {
-          const updatedBooks = books.filter(book => book.id !== id);
-          setBooks(updatedBooks);
-          navigation.replace('MyBooks');
-
-          }
+            const updatedBooks = books.filter((book) => book.id !== id);
+            setBooks(updatedBooks);
+            navigation.replace('MyBooks');
+          },
         },
       ],
-      { cancelable: true }
+      { cancelable: true },
     );
   };
 
@@ -65,14 +71,9 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
   };
 
   return (
-
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={{ uri: book.coverImage }}
-          resizeMode="cover"
-        />
+        <Image style={styles.image} source={book.coverImage} resizeMode="cover" />
         <Text style={styles.title}>{book.name}</Text>
       </View>
       <View style={styles.detailsContainer}>
@@ -86,12 +87,10 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
         <View style={styles.separator} />
         <Text style={styles.author}>contactEmail: {book.contactEmail}</Text>
         <View style={styles.separator} />
-        <Text style={styles.description}>
-          Description: {book.shortDescription}
-        </Text>
+        <Text style={styles.description}>Description: {book.shortDescription}</Text>
       </View>
 
-     {isFromMyBooksScreen && (
+      {isFromMyBooksScreen && (
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.editButton} onPress={handleEdit}>
             <Text style={styles.buttonText}>Edit</Text>
@@ -102,7 +101,6 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
         </View>
       )}
     </ScrollView>
-
   );
 };
 
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
     backgroundColor: '#fff',
-    marginBottom:20,
+    marginBottom: 20,
   },
   imageContainer: {
     // flex: 1,
@@ -122,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: 'rgba(173, 216, 230, 0.5)',
-    borderRadius: 15, 
+    borderRadius: 15,
   },
   image: {
     width: 100,
@@ -133,14 +131,14 @@ const styles = StyleSheet.create({
     // flex: 2,
     padding: 20,
     backgroundColor: 'rgba(173, 216, 230, 0.5)',
-    borderRadius: 15, 
-    marginTop:5
+    borderRadius: 15,
+    marginTop: 5,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    marginTop:10
+    marginTop: 10,
   },
   author: {
     fontSize: 16,
@@ -152,7 +150,7 @@ const styles = StyleSheet.create({
   separator: {
     height: 2,
     backgroundColor: 'rgba(0,0,0, 0.5)',
-    marginTop:3
+    marginTop: 3,
   },
 
   buttonContainer: {
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     marginTop: 5,
-    marginBottom:5,
+    marginBottom: 5,
     padding: 20,
     backgroundColor: 'rgba(173, 216, 230, 0.5)',
     borderRadius: 15,
@@ -183,6 +181,4 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-
 });
-

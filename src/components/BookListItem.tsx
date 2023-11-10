@@ -12,7 +12,7 @@ type Props = {
 export const BookListItem = ({ item, onPress }: Props) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.itemContainer}>
-      <Image source={{ uri: item.coverImage }} style={styles.bookCoverImage} />
+      <Image source={item.coverImage} style={styles.bookCoverImage} />
       <Text style={styles.itemText}>{item.name}</Text>
     </View>
   </TouchableOpacity>
