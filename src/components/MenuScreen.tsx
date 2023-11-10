@@ -4,6 +4,8 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
 import { RootStackParamList } from '../../App';
+import Spacing from '../Spacing';
+import FontSize from '../FontSize';
 import colors from '../colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;
@@ -46,15 +48,18 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     flex: 1,
+    padding: Spacing * 2,
   },
   itemContainer: {
-    backgroundColor: colors.white,
-    padding: 16,
+    padding: Spacing * 2,
+    backgroundColor: colors.primary,
+    marginVertical: Spacing,
+    borderRadius: Spacing,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   itemText: {
-    color: colors.black,
-    fontSize: 20,
-    alignSelf: 'center',
-    flex: 1,
+    color: colors.onPrimary,
+    fontSize: FontSize.large,
   },
 });
