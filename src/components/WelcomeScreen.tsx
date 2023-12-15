@@ -10,7 +10,7 @@ import {
 const WelcomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.welcome}>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        <Image source={require('../../assets/applogo.png')} style={styles.logo} />
         <Text style={styles.appName}>Welcome to BookBuddy</Text>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Login</Text>

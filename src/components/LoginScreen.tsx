@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
       <View style={styles.loginContainer}>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        <Image source={require('../../assets/applogo.png')} style={styles.logo} />
         <Text style={styles.appName}>Welcome to BookBuddy</Text>
         <TextInput
           style={styles.input}
