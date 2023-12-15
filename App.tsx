@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import HomeScreen from './src/components/HomeScreen';
 import LoginScreen from './src/components/LoginScreen';
@@ -19,6 +20,8 @@ import { MenuIconButton } from './src/components/MenuIconButton';
 import { getIsLoggedIn } from './src/utils/auth';
 
 import { Book } from './src/types';
+
+import colors from './src/colors';
 
 export type RootStackParamList = {
     HomeTabs: undefined;
@@ -39,14 +42,33 @@ const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'home'
+                : 'home-outline';
+            } else if (route.name === 'Menu') {
+              iconName = focused ? 'ios-list' : 'ios-list-outline';
+            } else if (route.name === 'MyBooks') {
+              iconName = focused ? 'book' : 'book-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: colors.primary,
+          tabBarInactiveTintColor: colors.text,
+        })}>
             <RootStack.Screen
         name="Home"
         component={HomeScreen}
         options={{ title: 'Listed Books', headerLeft: () => <MenuIconButton /> }}
             />
-            <RootStack.Screen name="Menu" component={MenuScreen} />
             <RootStack.Screen name="MyBooks" component={MyBooksScreen} options={{ title: 'My Books' }} />
+            <RootStack.Screen name="Menu" component={MenuScreen} />
             </Tab.Navigator>
     );
 }
