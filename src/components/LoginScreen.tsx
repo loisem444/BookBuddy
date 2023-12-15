@@ -1,27 +1,36 @@
-
 // LoginScreen.tsx
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Image, Text, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
+import { setIsLoggedIn } from '../utils/auth';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // TODO: Implement real authentication logic here
-    if (email === 'test@example.com' && password === 'password123') {
-      navigation.navigate('Home');
-    } else {
-      // Handle login error, show an alert or set an error state
-      alert('Invalid credentials');
-    }
+    // if (email === 'test@example.com' && password === 'password123') {
+    await setIsLoggedIn(true);
+    navigation.replace('HomeTabs');
+    // } else {
+    // Handle login error, show an alert or set an error state
+    // alert('Invalid credentials');
+    //}
   };
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}>
       <View style={styles.loginContainer}>
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <Text style={styles.appName}>Welcome to BookBuddy</Text>
@@ -45,7 +54,9 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('CreateAccount')}>
-          <Text style={styles.signUpText}>Don't have an account? <Text style={styles.signUp}>Sign Up</Text></Text>
+          <Text style={styles.signUpText}>
+            Don't have an account? <Text style={styles.signUp}>Sign Up</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -55,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e1f5fe', 
+    backgroundColor: '#e1f5fe',
   },
   loginContainer: {
     flex: 1,
@@ -114,7 +125,6 @@ const styles = StyleSheet.create({
     color: '#1E88E5',
     textDecorationLine: 'underline',
   },
-  
 });
 
 export default LoginScreen;

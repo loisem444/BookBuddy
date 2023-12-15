@@ -1,14 +1,16 @@
-
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
+
+import { setIsLoggedIn } from '../utils/auth';
 
 const CreateAccountScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (email.trim() && password.trim()) {
-      navigation.navigate('Home');
+        await setIsLoggedIn(true);
+        navigation.replace('HomeTabs');
     } else {
       Alert.alert('Error', 'Email and password cannot be blank.');
     }
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#e1f5fe', 
+    backgroundColor: '#e1f5fe',
   },
   headerText: {
     fontSize: 24,
@@ -85,8 +87,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-
 });
 
 export default CreateAccountScreen;
-

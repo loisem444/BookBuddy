@@ -7,13 +7,19 @@ import { RootStackParamList } from '../../App';
 import Spacing from '../Spacing';
 import FontSize from '../FontSize';
 import colors from '../colors';
+import { setIsLoggedIn } from '../utils/auth';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;
 type RouteName = 'MyBooks' | 'NewBook' | 'Login';
 
 const MenuScreen: React.FC<Props> = ({ navigation }) => {
-  const onPressItem = (routeName: RouteName) => {
-    navigation.replace(routeName);
+  const onPressItem = async (routeName: RouteName) => {
+    if (routeName === 'Login') {
+      await setIsLoggedIn(false);
+      navigation.replace('Login');
+      return;
+    }
+    navigation.navigate(routeName);
   };
 
   return (

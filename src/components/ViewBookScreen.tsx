@@ -13,7 +13,7 @@ import {
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import colors from '../colors';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface Book {
   id: string;
@@ -74,8 +74,8 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
         <Image style={styles.image} source={book.coverImage} resizeMode="cover" />
       </View>
       <View style={styles.detailsContainer}>
-      <Text style={styles.title}>{book.name}</Text>
-      <Text style={styles.author}>By {book.authors}</Text>
+        <Text style={styles.title}>{book.name}</Text>
+        <Text style={styles.author}>By {book.authors}</Text>
         <View style={styles.separator} />
         <Text style={styles.description}>Description: </Text>
         <Text style={styles.description}>{book.shortDescription}</Text>
@@ -88,11 +88,10 @@ const ViewBookScreen: React.FC<Props> = ({ route, navigation }) => {
         <Text style={styles.priceText}>Price : ${book.price}</Text>
         <View style={styles.separator} />
 
-      <TouchableOpacity style={styles.button}>
-      <Icon name="envelope" size={20} color="#FFFFFF" style={styles.icon} />
-      <Text style={styles.emailText}>{book.contactEmail}</Text>
-    </TouchableOpacity>
-        
+        <TouchableOpacity style={styles.button}>
+          <Icon name="envelope" size={20} color="#FFFFFF" style={styles.icon} />
+          <Text style={styles.emailText}>{book.contactEmail}</Text>
+        </TouchableOpacity>
       </View>
 
       {isFromMyBooksScreen && (
@@ -151,13 +150,13 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 90
+    marginLeft: 90,
   },
   separator: {
     height: 2,
     backgroundColor: 'rgba(0,0,0, 0.5)',
     marginBottom: 10,
-    marginTop:10,
+    marginTop: 10,
   },
 
   buttonContainer: {
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-//email buttoon
+  //email buttoon
   button: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -13,75 +13,110 @@ import ViewBookScreen from './src/components/ViewBookScreen';
 import EditBookScreen from './src/components/EditBookScreen';
 import EditBookConfirmation from './src/components/EditBookConfirmation';
 import MenuScreen from './src/components/MenuScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { MenuIconButton } from './src/components/MenuIconButton';
+import { getIsLoggedIn } from './src/utils/auth';
 
 import { Book } from './src/types';
 
 export type RootStackParamList = {
-  Home: undefined;
-  Login: undefined;
-  CreateAccount: undefined;
-  MyBooks: undefined;
-  NewBook: undefined;
-  NewBookConfirmation: undefined;
-  EditBook: undefined;
-  EditBookConfirmation: undefined;
-  ViewBook: { book: Book; previousScreen: String };
-  Menu: undefined;
+    HomeTabs: undefined;
+    Home: undefined;
+    Login: undefined;
+    CreateAccount: undefined;
+    MyBooks: undefined;
+    NewBook: undefined;
+    NewBookConfirmation: undefined;
+    EditBook: undefined;
+    EditBookConfirmation: undefined;
+    ViewBook: { book: Book; previousScreen: String };
+    Menu: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator();
+
+function HomeTabs() {
+    return (
+        <Tab.Navigator>
+            <RootStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: 'Listed Books', headerLeft: () => <MenuIconButton /> }}
+            />
+            <RootStack.Screen name="Menu" component={MenuScreen} />
+            <RootStack.Screen name="MyBooks" component={MyBooksScreen} options={{ title: 'My Books' }} />
+            </Tab.Navigator>
+    );
+}
 
 function App() {
-  return (
-    <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Login">
-        <RootStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <RootStack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: 'Listed Books', headerLeft: () => <MenuIconButton /> }}
-        />
-        <RootStack.Screen
-          name="CreateAccount"
-          component={CreateAccountScreen}
-          options={{ title: 'Create Account' }}
-        />
-        <RootStack.Screen
-          name="MyBooks"
-          component={MyBooksScreen}
-          options={{ title: 'My Books' }}
-        />
-        <RootStack.Screen
-          name="NewBook"
-          component={NewBookScreen}
-          options={{ title: 'New Books' }}
-        />
-        <RootStack.Screen
-          name="NewBookConfirmation"
-          component={NewBookConfirmation}
-          options={{ title: 'New Books Confirmation' }}
-        />
-        <RootStack.Screen
-          name="ViewBook"
-          component={ViewBookScreen}
-          options={{ title: 'View Books' }}
-        />
-        <RootStack.Screen
-          name="EditBook"
-          component={EditBookScreen}
-          options={{ title: 'Edit Book Details Screen' }}
-        />
-        <RootStack.Screen
-          name="EditBookConfirmation"
-          component={EditBookConfirmation}
-          options={{ title: 'Edit BookConfirmation' }}
-        />
-        <RootStack.Screen name="Menu" component={MenuScreen} />
-      </RootStack.Navigator>
-    </NavigationContainer>
-  );
+    const [isLoggedIn, setIsLoggedIn] = React.useState<boolean | undefined>(false);
+    const [hasCheckedAuth, setHasCheckedAuth] = React.useState<boolean>(false);
+
+    async function setAuthStatus() {
+        const isAuthenticated = await getIsLoggedIn();
+        setIsLoggedIn(isAuthenticated);
+        setHasCheckedAuth(true)
+    }
+
+    React.useEffect(() => {
+        setAuthStatus();
+    }, []);
+
+    if(!hasCheckedAuth) {
+        return
+    }
+
+    const initialRoute = isLoggedIn ? 'HomeTabs' : 'Login'
+
+    return (
+        <NavigationContainer>
+            <RootStack.Navigator
+        initialRouteName={initialRoute}
+            >
+            <RootStack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
+            <RootStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+            <RootStack.Screen
+        name="CreateAccount"
+        component={CreateAccountScreen}
+        options={{ title: 'Create Account' }}
+            />
+            <RootStack.Screen
+        name="MyBooks"
+        component={MyBooksScreen}
+        options={{ title: 'My Books' }}
+            />
+            <RootStack.Screen
+        name="NewBook"
+        component={NewBookScreen}
+        options={{ title: 'New Books' }}
+            />
+            <RootStack.Screen
+        name="NewBookConfirmation"
+        component={NewBookConfirmation}
+        options={{ title: 'New Books Confirmation' }}
+            />
+            <RootStack.Screen
+        name="ViewBook"
+        component={ViewBookScreen}
+        options={{ title: 'View Books' }}
+            />
+            <RootStack.Screen
+        name="EditBook"
+        component={EditBookScreen}
+        options={{ title: 'Edit Book Details Screen' }}
+            />
+            <RootStack.Screen
+        name="EditBookConfirmation"
+        component={EditBookConfirmation}
+        options={{ title: 'Edit BookConfirmation' }}
+            />
+            <RootStack.Screen name="Menu" component={MenuScreen} />
+            </RootStack.Navigator>
+            </NavigationContainer>
+    );
 }
 
 export default App;
