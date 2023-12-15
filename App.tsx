@@ -60,7 +60,7 @@ function HomeTabs() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: colors.primary,
-          tabBarInactiveTintColor: colors.text,
+          tabBarInactiveTintColor: colors.darkText,
         })}>
             <RootStack.Screen
         name="Home"
