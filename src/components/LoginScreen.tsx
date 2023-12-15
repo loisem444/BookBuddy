@@ -18,13 +18,13 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     // TODO: Implement real authentication logic here
-    // if (email === 'test@example.com' && password === 'password123') {
-    await setIsLoggedIn(true);
-    navigation.replace('HomeTabs');
-    // } else {
-    // Handle login error, show an alert or set an error state
-    // alert('Invalid credentials');
-    //}
+    if (email === 'test@example.com' && password === 'password123') {
+        await setIsLoggedIn(true);
+        navigation.replace('HomeTabs');
+    } else {
+     // Handle login error, show an alert or set an error state
+     alert('Invalid credentials');
+    }
   };
 
   return (
