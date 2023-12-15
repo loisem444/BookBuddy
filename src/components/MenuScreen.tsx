@@ -54,10 +54,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     flex: 1,
-    padding: Spacing * 2,
   },
   itemContainer: {
     padding: Spacing * 2,
+    marginRight: 16,
+    marginLeft: 16,
     backgroundColor: colors.primary,
     marginVertical: Spacing,
     borderRadius: Spacing,
