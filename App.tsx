@@ -14,6 +14,7 @@ import ViewBookScreen from './src/components/ViewBookScreen';
 import EditBookScreen from './src/components/EditBookScreen';
 import EditBookConfirmation from './src/components/EditBookConfirmation';
 import MenuScreen from './src/components/MenuScreen';
+import WelcomeScreen from './src/components/WelcomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { MenuIconButton } from './src/components/MenuIconButton';
@@ -35,6 +36,7 @@ export type RootStackParamList = {
     EditBookConfirmation: undefined;
     ViewBook: { book: Book; previousScreen: String };
     Menu: undefined;
+    Welcome: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -91,7 +93,7 @@ function App() {
         return
     }
 
-    const initialRoute = isLoggedIn ? 'HomeTabs' : 'Login'
+    const initialRoute = isLoggedIn ? 'HomeTabs' : 'Welcome'
 
     return (
         <NavigationContainer>
@@ -100,6 +102,7 @@ function App() {
             >
             <RootStack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
             <RootStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+            <RootStack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
             <RootStack.Screen
         name="CreateAccount"
         component={CreateAccountScreen}

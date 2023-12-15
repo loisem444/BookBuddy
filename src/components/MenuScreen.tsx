@@ -10,13 +10,13 @@ import colors from '../colors';
 import { setIsLoggedIn } from '../utils/auth';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;
-type RouteName = 'MyBooks' | 'NewBook' | 'Login';
+type RouteName = 'MyBooks' | 'NewBook' | 'Welcome';
 
 const MenuScreen: React.FC<Props> = ({ navigation }) => {
   const onPressItem = async (routeName: RouteName) => {
-    if (routeName === 'Login') {
+    if (routeName === 'Welcome') {
       await setIsLoggedIn(false);
-      navigation.replace('Login');
+      navigation.replace('Welcome');
       return;
     }
     navigation.navigate(routeName);
@@ -38,7 +38,7 @@ const MenuScreen: React.FC<Props> = ({ navigation }) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => onPressItem('Login')}>
+        <TouchableOpacity onPress={() => onPressItem('Welcome')}>
           <View style={styles.itemContainer}>
             <Text style={styles.itemText}>Sign out</Text>
           </View>
